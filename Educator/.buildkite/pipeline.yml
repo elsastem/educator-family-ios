@@ -1,0 +1,12 @@
+env:
+  DANGER_GITHUB_API_TOKEN: 1325b27bbd77dc5fa0fbb1b7e6a0adfbd4ff5993
+
+steps:
+
+  - command: "./build.sh alpha"
+    label: Fastlane (Alpha)
+
+  - command: |-
+      env
+      ./rundanger.sh
+    label: Danger

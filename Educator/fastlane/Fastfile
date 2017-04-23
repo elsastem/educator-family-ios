@@ -20,7 +20,6 @@ platform :ios do
     # snapshot(xcconfig: "scratch.xcconfig")
     gym(scheme: "Educator",
         export_method: "app-store",
-        use_legacy_build_api: false,
         clean: true,
         xcconfig: "scratch.xcconfig") # Build your app - more options available
     deliver(force: true)
@@ -31,7 +30,6 @@ platform :ios do
   lane :alpha do
     gym(scheme: "Educator",
         export_method: "ad-hoc",
-        use_legacy_build_api: false,
         clean: true,
         xcconfig: "scratch.xcconfig")
     release_notes = changelog_from_git_commits(between: ["origin/master", "HEAD"])

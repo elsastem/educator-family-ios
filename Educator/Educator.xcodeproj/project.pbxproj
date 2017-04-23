@@ -47,6 +47,7 @@
 		5260F5FF1EAC545900093701 /* EducatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EducatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5260F6031EAC545900093701 /* EducatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorUITests.swift; sourceTree = "<group>"; };
 		5260F6051EAC545900093701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5260F6131EACABE200093701 /* alpha.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = alpha.xcconfig; path = Config/alpha.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				5260F5E21EAC545800093701 /* Educator */,
+				5260F6121EACABAD00093701 /* Config */,
 				5260F5F71EAC545900093701 /* EducatorTests */,
 				5260F6021EAC545900093701 /* EducatorUITests */,
 				5260F5E11EAC545800093701 /* Products */,
@@ -123,6 +125,14 @@
 				5260F6051EAC545900093701 /* Info.plist */,
 			);
 			path = EducatorUITests;
+			sourceTree = "<group>";
+		};
+		5260F6121EACABAD00093701 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				5260F6131EACABE200093701 /* alpha.xcconfig */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

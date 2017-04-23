@@ -1,0 +1,62 @@
+# All lines starting with a # are ignored when running `fastlane`
+
+fastlane_version "1.89.0"
+
+default_platform :ios
+
+platform :ios do
+  before_all do
+    ensure_git_status_clean
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    scan
+  end
+
+  desc "Deploy a new version to Test Flight"
+  lane :beta do
+    # match(type: "appstore")
+    # snapshot(xcconfig: "scratch.xcconfig")
+    gym(scheme: "Educator",
+        export_method: "app-store",
+        use_legacy_build_api: false,
+        clean: true,
+        xcconfig: "scratch.xcconfig") # Build your app - more options available
+    deliver(force: true)
+    # frameit
+  end
+
+  desc "Upload a new build to Hockey"
+  lane :alpha do
+    cocoapods
+    gym(scheme: "Educator",
+        export_method: "ad-hoc",
+        use_legacy_build_api: false,
+        clean: true,
+        xcconfig: "scratch.xcconfig")
+    release_notes = changelog_from_git_commits(between: ["origin/master", "HEAD"])
+    if release_notes.nil? || release_notes.empty? then
+      release_notes = changelog_from_git_commits
+    end
+
+    hockey_tags = "dev"
+    branch = ENV["BUILDKITE_BRANCH"]
+    if branch == "master" then
+      hockey_tags = "dev,elsa"
+    elsif branch == "develop" then
+      hockey_tags = "dev,design"
+    else
+      print "not on master: " + branch
+    end
+
+    hockey(
+      api_token: "2f4641ecb66a414797a5e6ce4ecbf8b4",
+      notify: "0",
+      notes: release_notes,
+      notes_type: "0",
+      build_server_url: ENV["BUILDKITE_BUILD_URL"]
+    )
+  end
+
+end

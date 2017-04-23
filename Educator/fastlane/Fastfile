@@ -29,7 +29,6 @@ platform :ios do
 
   desc "Upload a new build to Hockey"
   lane :alpha do
-    cocoapods
     gym(scheme: "Educator",
         export_method: "ad-hoc",
         use_legacy_build_api: false,

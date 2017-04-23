@@ -29,7 +29,7 @@ platform :ios do
   desc "Upload a new build to Hockey"
   lane :alpha do
     gym(scheme: "Educator",
-        export_method: "ad-hoc",
+        export_method: "enterprise",
         clean: true,
         xcconfig: "scratch.xcconfig")
     release_notes = changelog_from_git_commits(between: ["origin/master", "HEAD"])
